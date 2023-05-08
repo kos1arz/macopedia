@@ -17,3 +17,16 @@ Hasło: qwerty
 #### Po wgraniu csv:
 
 php bin/console import:csv
+
+#### Zadanie z sql:
+
+SELECT COUNT(film.id) AS ilosc_filmow, language.name AS nazwa_jezyka
+FROM film
+INNER JOIN language ON film.language_id = language.language_id
+GROUP BY language.name;
+
+SELECT COUNT(film.id) AS ilosc_filmow, language.name AS nazwa_jezyka
+FROM film
+INNER JOIN language ON film.language_id = language.language_id
+GROUP BY language.name
+HAVING COUNT(film.id) > 5;
