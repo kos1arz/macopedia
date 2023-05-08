@@ -14,6 +14,20 @@
         {% endblock %}
     </head>
     <body>
+        <header class="d-flex justify-content-center py-3 bg-white text-dark">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="{{ path('product_index') }}" class="nav-link">Produkty</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('category_index') }}" class="nav-link">Kategorie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('csv_import') }}" class="nav-link">Wgraj plik</a>
+                </li>
+            </ul>
+        </header>
+
         {% block body %}{% endblock %}
     </body>
 </html>

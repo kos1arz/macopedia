@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista produktów{% endblock %}
+
+{% block body %}
+<h1>Lista produktów</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Indeks produktu</th>
+            <th>Kategoria</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in pagination %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.productIndex }}</td>
+            <td>{{ product.category ? product.category.name : 'Brak' }}</td>
+            <td>
+                <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-primary">Edytuj</a>
+                <form method="post" action="{{ path('product_delete', {'id': product.id}) }}" style="display: inline-block" onsubmit="return confirm('Czy na pewno chcesz usunąć?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                    <button class="btn btn-danger">Usuń</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">Brak produktów</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+<a href="{{ path('product_new') }}" class="btn btn-success">Dodaj produkt</a>
+{% endblock %}

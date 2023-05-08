@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj kategorię{% endblock %}
+
+{% block body %}
+    <h1>Edytuj kategorię</h1>
+
+    {{ include('category/_form.html.twig') }}
+
+    <a href="{{ path('category_index') }}">Powrót do listy kategorii</a>
+{% endblock %}
